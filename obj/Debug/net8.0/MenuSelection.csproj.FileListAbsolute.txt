@@ -1,0 +1,14 @@
+/home/mizar/Dev/MenuSelection/bin/Debug/net8.0/MenuSelection
+/home/mizar/Dev/MenuSelection/bin/Debug/net8.0/MenuSelection.deps.json
+/home/mizar/Dev/MenuSelection/bin/Debug/net8.0/MenuSelection.runtimeconfig.json
+/home/mizar/Dev/MenuSelection/bin/Debug/net8.0/MenuSelection.dll
+/home/mizar/Dev/MenuSelection/bin/Debug/net8.0/MenuSelection.pdb
+/home/mizar/Dev/MenuSelection/obj/Debug/net8.0/MenuSelection.GeneratedMSBuildEditorConfig.editorconfig
+/home/mizar/Dev/MenuSelection/obj/Debug/net8.0/MenuSelection.AssemblyInfoInputs.cache
+/home/mizar/Dev/MenuSelection/obj/Debug/net8.0/MenuSelection.AssemblyInfo.cs
+/home/mizar/Dev/MenuSelection/obj/Debug/net8.0/MenuSelection.csproj.CoreCompileInputs.cache
+/home/mizar/Dev/MenuSelection/obj/Debug/net8.0/MenuSelection.dll
+/home/mizar/Dev/MenuSelection/obj/Debug/net8.0/refint/MenuSelection.dll
+/home/mizar/Dev/MenuSelection/obj/Debug/net8.0/MenuSelection.pdb
+/home/mizar/Dev/MenuSelection/obj/Debug/net8.0/MenuSelection.genruntimeconfig.cache
+/home/mizar/Dev/MenuSelection/obj/Debug/net8.0/ref/MenuSelection.dll
