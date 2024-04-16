@@ -1,25 +1,42 @@
 namespace NotStatic
 {
+	public class ColorSelection
+	{
+		public ConsoleColor Background { get; set; }
+		public ConsoleColor Foreground { get; set; }
+		public ConsoleColor HighlightBackground { get; set; }
+		public ConsoleColor SelectionHighLightBackground { get; set; }
+		public ConsoleColor HighLightForeground { get; set; }
+	}
+
 	public class ConsoleHandler<T>
 	{
-		private readonly ConsoleColor _defaultBackgroundColor, _defaultForegroundColor;
+		private ConsoleColor _BackgroundColor, 
+							_ForegroundColor,
+							_HighlightForegroundColor,
+							_HighlightBackgroundColor,
+							_SelectionHighlightBackgroundColor;
 		private readonly T[] _options;
 		private readonly Func<T, string> _toString;
 		private bool _sortingMode;
 
-		public ConsoleHandler(T[] options, Func<T, string> stringingOptions)
+		public ConsoleHandler(T[] options, Func<T, string> toString)
 		{
 			this._options = options;
-			this._toString = stringingOptions;
+			this._toString = toString;
 
 			this._sortingMode = false;
 
-			this._defaultBackgroundColor = Console.BackgroundColor;
-			this._defaultForegroundColor = Console.ForegroundColor;
+			this._BackgroundColor = Console.BackgroundColor;
+			this._ForegroundColor = Console.ForegroundColor;
+			this._HighlightBackgroundColor = Console.ForegroundColor;
+			this._HighlightForegroundColor = Console.BackgroundColor;
+			this._HighlightForegroundColor = Console.BackgroundColor;
+			this._SelectionHighlightBackgroundColor = ConsoleColor.Cyan;
 		}
 		
-		public ConsoleHandler(List<T> options, Func<T, string> stringingOptions) 
-			: this(options.ToArray(), stringingOptions)
+		public ConsoleHandler(List<T> options, Func<T, string> toString) 
+			: this(options.ToArray(), toString)
 		{ }
 
 		public T DisplaySelectionMenu()
@@ -64,6 +81,15 @@ namespace NotStatic
 			return this._options[selectedLineIndex];
 		}
 
+		public void SetColors(ColorSelection selection)
+		{
+			this._BackgroundColor = selection.Background;
+			this._ForegroundColor = selection.Foreground;
+			this._HighlightBackgroundColor = selection.HighlightBackground;
+			this._HighlightForegroundColor = selection.HighLightForeground;
+			this._SelectionHighlightBackgroundColor = selection.SelectionHighLightBackground;
+		}
+
 		private void _updateMenu(int index)
 		{
 			Console.Clear();
@@ -84,11 +110,11 @@ namespace NotStatic
 
 		private void _drawSelectedLine(T item)
 		{
-			Console.BackgroundColor = this._sortingMode ? ConsoleColor.Cyan : ConsoleColor.White;
-			Console.ForegroundColor = ConsoleColor.Black;
+			Console.BackgroundColor = this._sortingMode ? this._SelectionHighlightBackgroundColor : this._HighlightBackgroundColor;
+			Console.ForegroundColor = this._HighlightForegroundColor;
 			Console.WriteLine($"> {this._toString(item)}");
-			Console.BackgroundColor = this._defaultBackgroundColor;
-			Console.ForegroundColor = this._defaultForegroundColor;		
+			Console.BackgroundColor = this._BackgroundColor;
+			Console.ForegroundColor = this._ForegroundColor;		
 		}
 
 		private void _swap(int index1, int index2)
