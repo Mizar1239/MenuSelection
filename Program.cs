@@ -1,4 +1,7 @@
-﻿string[] cities = {
+﻿using NotStatic;
+using StaticDisplaying;
+
+string[] cities = {
 	"Napoli",
 	"Milano",
 	"Bologna",
@@ -14,13 +17,15 @@ Person[] people = {
 	new Person() { Name = "Davide", Age = 28}
 };
 
-ConsoleHandler<Person> consHand = new ConsoleHandler<Person>(people, (p) => p.Name);
+ConsoleHandler<string> consHand = new ConsoleHandler<string>(cities, (p) => p);
+string selected = consHand.DisplaySelectionMenu();
+Console.WriteLine($"\nOption chosen: {selected}");
 
-Person selected = consHand.DisplaySelectionMenu();
+Person PersonSelected = StaticDisplayer.DisplayOptions<Person>(people, (p) => p.Name);
 
 foreach (var item in people)
 {
 	Console.WriteLine(item);
 }
 
-Console.WriteLine($"\nOption chosen: {selected}");
+Console.WriteLine($"\nOption chosen: {PersonSelected}");
