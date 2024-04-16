@@ -6,25 +6,13 @@
 	"Firenze"
 };
 
-int previousLineIndex = -1, selectedLineIndex = 0;
-ConsoleKey pressedKey = ConsoleKey.None;
-ConsoleHandler consHand = new ConsoleHandler();
+ConsoleHandler consHand = new ConsoleHandler(cities);
 
-do 
+string selected = consHand.DisplaySelectionMenu();
+
+foreach (var item in cities)
 {
-	if (previousLineIndex != selectedLineIndex)
-	{
-		consHand.UpdateMenu(selectedLineIndex, cities);
-		previousLineIndex = selectedLineIndex;
-	}
-
-	pressedKey = Console.ReadKey().Key;
-
-	if (pressedKey == ConsoleKey.DownArrow && selectedLineIndex+1 < cities.Length)
-		selectedLineIndex++;
-	else if (pressedKey == ConsoleKey.UpArrow && selectedLineIndex-1 >= 0)
-		selectedLineIndex--;	
+	Console.WriteLine(item);
 }
-while (pressedKey != ConsoleKey.Enter);
 
-Console.WriteLine($"Option chosen: {cities[selectedLineIndex]}");
+Console.WriteLine($"Option chosen: {selected}");
