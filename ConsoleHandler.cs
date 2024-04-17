@@ -92,8 +92,7 @@ namespace NotStatic
 
 		private void _updateMenu(int index)
 		{
-			Console.Clear();
-			Console.WriteLine("\x1b[3J");
+			this._setConsoleCursor();
 
 			Console.WriteLine(SELECTION_TEXT);
 
@@ -124,6 +123,13 @@ namespace NotStatic
 			this._options[index2] = tmp;
 		}
 
-		private const string SELECTION_TEXT = "Use arrows to select an object in the list\nPress Space to select an object and the arrows to change its place\nPress Enter to finish\n";
+		private void _setConsoleCursor()
+		{
+			var position = Console.GetCursorPosition();
+			position.Top -= this._options.Length +4;				
+			Console.SetCursorPosition(position.Left, position.Top);
+		}
+
+		private const string SELECTION_TEXT = "\rUse arrows to select an object in the list\nPress Space to select an object and the arrows to change its place\nPress Enter to finish\n";
 	}
 }
